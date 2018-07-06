@@ -1,0 +1,45 @@
+#!/bin/bash
+
+smartPath=`pwd`
+#加载公共smart函数库
+. ./smart-scripts/shell/smartfunc/smartfunc
+
+#加载base函数库
+. ./smart-scripts/shell/smartfunc/basefunc
+
+#加载项目函数库
+. ./smart-scripts/shell/smartfunc/protalfunc
+. ./smart-scripts/shell/smartfunc/reversefunc
+
+case $1 in
+'install')
+  installBasement
+  installPortal
+  installReverse
+  ;;
+'start')
+  startBasement
+  startPortal
+  startReverse
+  ;;
+'stop')
+  stopBasement
+  stopPortal
+  stopReverse
+  ;;
+'clear')
+  clearBasement
+  clearPortal
+  ;;
+'upgrade')
+  clearPortal
+  clearReverse
+  startPortal
+  startReverse
+  ;;
+'addHosts')
+  addHosts
+  ;;
+*)
+  menu
+esac

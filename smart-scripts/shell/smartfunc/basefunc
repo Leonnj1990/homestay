@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function installBasement {
+  installMysql
+}
+
+function installMysql {
+  createFolder 'basement/mysql'
+  cp ./smart-scripts/shell/composefiles/mysql.yml basement/mysql/docker-compose.yml
+  cd basement/mysql && docker-compose up -d && cd $smartPath
+}
+
+function startBasement {
+  cd basement/mysql && docker-compose up -d && cd $smartPath
+}
+
+function clearBasement {
+  cd basement/mysql && docker-compose stop && docker-compose rm -f && docker-compose pull && cd $smartPath
+}
+
+function stopBasement {
+  cd basement/mysql && docker-compose stop && cd $smartPath
+}
+
+function createFolder {
+  if [ ! -d "./$1" ]; then
+    mkdir -p $1
+  fi
+}

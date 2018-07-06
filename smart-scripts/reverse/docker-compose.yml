@@ -1,0 +1,9 @@
+nginx:
+  image: "registry.cn-hangzhou.aliyuncs.com/marmot/nginx-base"
+  ports:
+    - "80:80"
+  external_links:
+    - "homestay-portal-nginx"
+  volumes:
+    - ./conf.d/:/etc/nginx/conf.d/
+  container_name: reverse
