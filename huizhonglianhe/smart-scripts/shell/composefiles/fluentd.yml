@@ -1,0 +1,12 @@
+fluentd:
+  image: "registry.cn-hangzhou.aliyuncs.com/marmot/fluentd:es"
+  volumes:
+    - ./:/fluentd/etc
+  external_links:
+    - "huizhonglianhe-elasticsearch:elasticsearch"
+  ports:
+    - "24224:24224"
+    - "24224:24224/udp"
+  environment:
+    - FLUENTD_CONF=fluentd.conf
+  container_name: huizhonglianhe-fluentd
